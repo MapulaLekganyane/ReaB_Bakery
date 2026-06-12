@@ -1,5 +1,5 @@
-using LindisBakery.Data;
-using LindisBakery.Models;
+using ReaB_Bakery.Data;
+using ReaB_Bakery.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,23 +21,18 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-//FOR RENDER HOSTING
+//FOR LOCAL HOSTING
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("LocalConnection"))
 );
 
-//FOR LOCAL HOSTING
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//    options.UseSqlServer(
-//        builder.Configuration.GetConnectionString("LocalConnection"))
-//);
-
 //FOR RENDER HOSTING
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(int.Parse(port));
-});
+//var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+//builder.WebHost.ConfigureKestrel(options =>
+//{
+//    options.ListenAnyIP(int.Parse(port));
+//});
 
 var app = builder.Build();   // <-- MUST be here
 

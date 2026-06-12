@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LindisBakery.Models
+namespace ReaB_Bakery.Models
 {
     public class OrderItem
     {

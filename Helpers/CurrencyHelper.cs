@@ -1,4 +1,4 @@
-﻿namespace LindisBakery.Helpers
+﻿namespace ReaB_Bakery.Helpers
 {
     public static class CurrencyHelper
     {

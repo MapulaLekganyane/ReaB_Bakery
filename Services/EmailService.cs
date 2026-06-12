@@ -1,8 +1,8 @@
-﻿using LindisBakery.Models;
+﻿using ReaB_Bakery.Models;
 using System.Net;
 using System.Net.Mail;
 
-namespace LindisBakery.Data
+namespace ReaB_Bakery.Data
 {
     public class EmailService
     {

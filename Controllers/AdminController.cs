@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using LindisBakery.Models;
-using LindisBakery.Data;
+using ReaB_Bakery.Models;
+using ReaB_Bakery.Data;
 
-namespace LindisBakery.Controllers
+namespace ReaB_Bakery.Controllers
 {
     //[Authorize] // Add authentication later
     [Route("admin")]

@@ -17,4 +17,4 @@ EXPOSE 8080
 
 ENV ASPNETCORE_URLS=http://0.0.0.0:8080
 
-ENTRYPOINT ["dotnet", "LindisBakery.dll"]
+ENTRYPOINT ["dotnet", "ReaB_Bakery.dll"]

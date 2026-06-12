@@ -1,7 +1,7 @@
-﻿using LindisBakery.Models;
+﻿using ReaB_Bakery.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace LindisBakery.Data
+namespace ReaB_Bakery.Data
 {
     public class ApplicationDbContext : DbContext
     {

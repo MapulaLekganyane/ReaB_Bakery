@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace LindisBakery.Migrations
+namespace ReaB_Bakery.Migrations
 {
     /// <inheritdoc />
     public partial class UpdatedMenu : Migration

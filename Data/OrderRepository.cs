@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using LindisBakery.Models;
+using ReaB_Bakery.Models;
 
-namespace LindisBakery.Data
+namespace ReaB_Bakery.Data
 {
     public interface IOrderRepository
     {

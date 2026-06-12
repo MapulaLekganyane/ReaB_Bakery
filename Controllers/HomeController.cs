@@ -1,11 +1,11 @@
-﻿using LindisBakery.Data;
-using LindisBakery.Helpers;
-using LindisBakery.Models;
+﻿using ReaB_Bakery.Data;
+using ReaB_Bakery.Helpers;
+using ReaB_Bakery.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 
-namespace LindisBakery.Controllers
+namespace ReaB_Bakery.Controllers
 {
     public class HomeController : Controller
     {

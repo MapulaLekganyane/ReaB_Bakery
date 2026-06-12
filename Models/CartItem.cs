@@ -1,4 +1,4 @@
-﻿namespace LindisBakery.Models
+﻿namespace ReaB_Bakery.Models
 {
     public class CartItem
     {

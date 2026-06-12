@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-namespace LindisBakery.Helpers
+namespace ReaB_Bakery.Helpers
 {
     public static class SessionHelper
     {

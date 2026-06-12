@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace LindisBakery.Migrations
+namespace ReaB_Bakery.Migrations
 {
     /// <inheritdoc />
     public partial class UpdatedOrders : Migration

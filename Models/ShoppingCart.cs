@@ -1,12 +1,10 @@
-﻿using LindisBakery.Models;
+﻿using ReaB_Bakery.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
 
-namespace LindisBakery.Models
+namespace ReaB_Bakery.Models
 {
-    using Microsoft.AspNetCore.Http;
-    using Newtonsoft.Json;
 
     public class ShoppingCart
     {
