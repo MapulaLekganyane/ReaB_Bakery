@@ -1,0 +1,63 @@
+﻿@model ReaB_Bakery.Models.Product
+@using ReaB_Bakery.Helpers
+
+<div class="product-card" id="card-@Model.Id">
+    <div class="product-card-img-wrap">
+        <img src="@Model.ImageUrl" alt="@Model.Name" class="product-card-img" />
+        @if (!Model.IsAvailable)
+        {
+            <span class="product-badge-unavailable">Unavailable</span>
+        }
+    </div>
+    <div class="product-card-body">
+        <h5 class="product-card-name">@Model.Name</h5>
+        <p class="product-card-desc">@Model.Description</p>
+        <p class="product-card-price">From @CurrencyHelper.FormatAmount(Model.Price)</p>
+
+        <div class="product-action-btns">
+            <a href="@Url.Action("ProductDetail", "Home", new { id = Model.Id })"
+               class="btn-action-outline w-100 text-center">
+                🎂 Customize & Order
+            </a>
+        </div>
+    </div>
+
+    <div class="customize-panel" id="customize-@Model.Id" style="display:none;">
+        <h6 class="customize-title">Customize Your Order</h6>
+        <form asp-controller="Home" asp-action="SubmitCustomization" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="productId" value="@Model.Id" />
+            <input type="hidden" name="productName" value="@Model.Name" />
+            <div class="customize-field">
+                <label>Your Name</label>
+                <input type="text" name="customerName" placeholder="e.g. Thabo Mokoena" required />
+            </div>
+            <div class="customize-field">
+                <label>Your Email</label>
+                <input type="email" name="customerEmail" placeholder="e.g. you@email.com" required />
+            </div>
+            <div class="customize-field">
+                <label>Your Phone Number</label>
+                <input type="tel" name="customerPhone" placeholder="e.g. 071 234 5678" required />
+            </div>
+            <div class="customize-field">
+                <label>Delivery Date</label>
+                <input type="date" name="eventDate" required />
+            </div>
+            <div class="customize-field">
+                <label>Design Notes</label>
+                <textarea name="designNotes" rows="3"
+                          placeholder="e.g. Sage green with gold accents for a bridal shower..."></textarea>
+            </div>
+            <div class="customize-field">
+                <label>Upload Inspiration Photo <span class="optional">(optional)</span></label>
+                <input type="file" name="inspirationPhoto" accept="image/*" />
+            </div>
+            <div class="customize-actions">
+                <button type="submit" class="btn-pink-solid">Send Request</button>
+                <button type="button" class="btn-cancel" onclick="toggleCustomize(@Model.Id)">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+   
+</div>

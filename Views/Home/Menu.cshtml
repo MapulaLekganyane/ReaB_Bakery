@@ -1,4 +1,4 @@
-﻿@model IEnumerable< ReaB_Bakery.Models.Product>
+﻿@model IEnumerable<ReaB_Bakery.Models.Product>
 @using ReaB_Bakery.Helpers
 @{
     Layout = "_Layout";
@@ -6,15 +6,23 @@
 }
 
 <div class="container mt-4">
-    <h1 class="text-center mb-4">Our Delicious Menu</h1>
+    <h1 class="menu-page-title">Our Menu</h1>
+    
 
-    <!-- Category Filter -->
+    @if (TempData["CustomSuccess"] != null)
+    {
+        <div class="custom-success-banner">
+            @TempData["CustomSuccess"]
+        </div>
+    }
+
+
+    <!-- Category Filter Pills -->
     <div class="mb-4 text-center">
         <a href="@Url.Action("Menu", "Home")"
            class="btn @(ViewBag.Category == null ? "btn-pink" : "btn-outline-pink") me-2">
             All Items
         </a>
-
         @foreach (var category in ViewBag.Categories)
         {
             <a href="@Url.Action("Menu", "Home", new { category = category })"
@@ -24,62 +32,86 @@
         }
     </div>
 
+    <!-- Toast -->
+    <div id="cartToast" class="cart-toast">✔ Added to cart!</div>
 
-
-    <div id="cartToast" class="cart-toast" style="opacity: 0;">
-        ✔ Added to cart!
-    </div>
-
-    @if (TempData["Success"] != null)
+    <!-- Grouped by Category -->
+    <!-- Products -->
+    @if (ViewBag.Category == null)
     {
-        <div id="cartToast" class="cart-toast">
-            @TempData["Success"]
+        <!-- All Items — flat continuous grid -->
+        <div class="product-grid">
+            @foreach (var product in Model)
+            {
+                <div class="product-card-wrapper">
+                    @await Html.PartialAsync("_ProductCard", product)
+                </div>
+            }
         </div>
     }
-    
-
-
-    <div class="row">
-        @foreach (var product in Model)
+    else
+    {
+        <!-- Filtered by category -->
+        @foreach (var group in ViewBag.GroupedProducts as Dictionary<string, List<ReaB_Bakery.Models.Product>>)
         {
-            <div class="col-md-4 product-col mb-4">
-                <div class="card h-100">
-                    <img src="@product.ImageUrl" class="card-img-top"
-                         alt="@product.Name" style="height: 200px; object-fit: cover;">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@product.Name</h5>
-                        <p class="card-text">@product.Description</p>
-                        <p class="card-text"><strong>Price: @CurrencyHelper.FormatAmount(product.Price)</strong></p>
-                        <div class="mt-auto">
-
-                            <form asp-controller="Home" asp-action="AddToCart" method="post" class="d-flex">
-                                <input type="hidden" name="productId" value="@product.Id" />
-
-                                <div class="d-flex align-items-center gap-2 cart-controls">
-
-                                    <button type="button" class="qty-btn minus">−</button>
-
-                                    <input type="number"
-                                           name="quantity"
-                                           class="quantity-input"
-                                           value="1"
-                                           min="1" />
-
-                                    <button type="button" class="qty-btn plus">+</button>
-
-                                    <button type="submit" class="btn btn-success">
-                                        <i class="bi bi-cart-plus"></i>
-                                        Add to Cart
-                                    </button>
-
-                                </div>
-                            </form>
-
-
+            if (ViewBag.Category != group.Key) continue;
+            <div class="menu-category-section">
+                <div class="product-grid">
+                    @foreach (var product in group.Value)
+                    {
+                        <div class="product-card-wrapper">
+                            @await Html.PartialAsync("_ProductCard", product)
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         }
-    </div>
+    }
+
+
+
+
+
+
+
 </div>
+
+@section Scripts {
+    <script>
+        function toggleCustomize(id) {
+            const panel = document.getElementById('customize-' + id);
+            const examples = document.getElementById('examples-' + id);
+            examples.style.display = 'none';
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleExamples(id) {
+            const panel = document.getElementById('examples-' + id);
+            const customize = document.getElementById('customize-' + id);
+            customize.style.display = 'none';
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+                // Auto-hide success banner
+        const banner = document.querySelector('.custom-success-banner');
+        if (banner) {
+            setTimeout(() => {
+                banner.style.transition = 'opacity 0.5s ease';
+                banner.style.opacity = '0';
+                setTimeout(() => banner.remove(), 500);
+            }, 2000);
+        }
+
+        // Cart quantity buttons
+        document.querySelectorAll('.add-cart-form').forEach(form => {
+            form.querySelector('.minus').addEventListener('click', () => {
+                const input = form.querySelector('.quantity-input');
+                if (parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+            });
+            form.querySelector('.plus').addEventListener('click', () => {
+                const input = form.querySelector('.quantity-input');
+                input.value = parseInt(input.value) + 1;
+            });
+        });
+    </script>
+}

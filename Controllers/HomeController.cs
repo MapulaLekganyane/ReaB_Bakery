@@ -1,9 +1,10 @@
-﻿using ReaB_Bakery.Data;
-using ReaB_Bakery.Helpers;
-using ReaB_Bakery.Models;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
+using ReaB_Bakery.Data;
+using ReaB_Bakery.Helpers;
+using ReaB_Bakery.Models;
 
 namespace ReaB_Bakery.Controllers
 {
@@ -13,17 +14,19 @@ namespace ReaB_Bakery.Controllers
         private readonly ShoppingCart _cart;
         private readonly EmailService _emailService;
         private readonly ILogger<HomeController> _logger;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public HomeController(
             ApplicationDbContext context,
             ShoppingCart cart,
             EmailService emailService,
-            ILogger<HomeController> logger)
+            ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _cart = cart;
             _emailService = emailService;
             _logger = logger;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -53,29 +56,84 @@ namespace ReaB_Bakery.Controllers
             }
         }
 
-        public IActionResult Menu(string? category = null)
+        public async Task<IActionResult> Menu(string category = null)
         {
-            var products = _context.Products.Where(p => p.IsAvailable).ToList();
+            var products = _context.Products.Where(p => p.IsAvailable);
 
-            // Set categories for filter buttons
-            var categories = _context.Products
+            if (!string.IsNullOrEmpty(category))
+                products = products.Where(p => p.Category == category);
+
+            ViewBag.Category = category;
+            ViewBag.Categories = await _context.Products
                 .Where(p => p.IsAvailable)
                 .Select(p => p.Category)
                 .Distinct()
-                .ToList();
+                .OrderBy(c => c)
+                .ToListAsync();
 
-            ViewBag.Categories = categories;
-            ViewBag.Category = category;
+            ViewBag.GroupedProducts = await _context.Products
+                .Where(p => p.IsAvailable)
+                .GroupBy(p => p.Category)
+                .ToDictionaryAsync(g => g.Key, g => g.ToList());
 
-            // Filter by category if specified
-            if (!string.IsNullOrEmpty(category))
-            {
-                products = products.Where(p => p.Category == category).ToList();
-            }
-
-            return View(products);
+            return View(await products.ToListAsync());
         }
 
+        [HttpPost]
+        public async Task<IActionResult> SubmitCustomization(
+    int productId,
+    string productName,
+    string customerName,
+    string customerEmail,
+    string customerPhone,
+    DateTime eventDate,
+    string designNotes,
+    IFormFile inspirationPhoto)
+        {
+            // 1. Save photo if uploaded
+            string photoPath = null;
+            if (inspirationPhoto != null && inspirationPhoto.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(
+                    _webHostEnvironment.WebRootPath, "uploads", "customizations");
+                Directory.CreateDirectory(uploadsFolder);
+
+                var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(inspirationPhoto.FileName)}";
+                var filePath = Path.Combine(uploadsFolder, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                    await inspirationPhoto.CopyToAsync(stream);
+
+                photoPath = $"/uploads/customizations/{fileName}";
+            }
+
+            // 2. Save to database
+            var request = new CustomizationRequest
+            {
+                ProductId = productId,
+                ProductName = productName,
+                CustomerName = customerName,
+                CustomerEmail = customerEmail,
+                CustomerPhone = customerPhone,
+                EventDate = eventDate,
+                DesignNotes = designNotes,
+                InspirationPhotoPath = photoPath,
+                SubmittedAt = DateTime.Now,
+                Status = "Pending"
+            };
+            _context.CustomizationRequests.Add(request);
+            await _context.SaveChangesAsync();
+
+            // 3. Email the bakery owner
+            await _emailService.SendCustomizationRequestAsync(
+                customerName, customerEmail, customerPhone, productName,
+                eventDate, designNotes, photoPath);
+
+            TempData["CustomSuccess"] =
+                $"Thank you {customerName}! Your customization request has been sent. We'll be in touch soon! 🎂";
+
+            return RedirectToAction("Menu");
+        }
         // ===========================
         // ABOUT / CONTACTS
         // ===========================
@@ -207,6 +265,67 @@ namespace ReaB_Bakery.Controllers
             return RedirectToAction("OrderConfirmation");
         }
 
+        public async Task<IActionResult> ProductDetail(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null) return NotFound();
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PlaceCustomOrder(CustomOrder order, IFormFile InspirationPhoto)
+        {
+            if (InspirationPhoto != null && InspirationPhoto.Length > 0)
+            {
+                var folder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "orders");
+                Directory.CreateDirectory(folder);
+                var fileName = $"{Guid.NewGuid()}_{Path.GetFileName(InspirationPhoto.FileName)}";
+                var filePath = Path.Combine(folder, fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                    await InspirationPhoto.CopyToAsync(stream);
+                order.InspirationPhotoPath = $"/uploads/orders/{fileName}";
+            }
+
+            order.OtherFlavour ??= string.Empty;
+            order.CustomColour ??= string.Empty;
+            order.DesignNotes ??= string.Empty;
+            order.InspirationPhotoPath ??= string.Empty;
+            order.OrderReference = $"REAB-{DateTime.Now:yyyyMMdd}-{Guid.NewGuid().ToString()[..4].ToUpper()}";
+            order.OrderedAt = DateTime.Now;
+            order.Status = "Pending";
+
+            var flavour = order.CakeFlavour == "Other" && !string.IsNullOrEmpty(order.OtherFlavour)
+                ? order.OtherFlavour : order.CakeFlavour;
+
+            var colour = order.CakeColour == "Custom" && !string.IsNullOrEmpty(order.CustomColour)
+                ? order.CustomColour : order.CakeColour;
+
+            _context.CustomOrders.Add(order);
+            await _context.SaveChangesAsync();
+
+            await _emailService.SendCustomOrderAsync(order, flavour, colour);
+
+            var waMessage = Uri.EscapeDataString(
+                $"🎂 New Order: {order.OrderReference}\n" +
+                $"Product: {order.ProductName}\n" +
+                $"Customer: {order.CustomerName}\n" +
+                $"Phone: {order.CustomerPhone}\n" +
+                $"Flavour: {flavour}\n" +
+                $"Colour: {colour}\n" +
+                $"Delivery: {order.DeliveryDate:dd MMM yyyy}\n" +
+                $"Notes: {order.DesignNotes}");
+
+            TempData["OrderReference"] = order.OrderReference;
+            TempData["CustomerName"] = order.CustomerName;
+            TempData["WhatsAppUrl"] = $"https://wa.me/27760708055?text={waMessage}";
+
+            return RedirectToAction("CustomOrderConfirmation");
+        }
+
+        public IActionResult CustomOrderConfirmation()
+        {
+            return View();
+        }
 
 
 

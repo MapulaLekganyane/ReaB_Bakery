@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Order Placed!";
+}
+
+<div class="confirmation-wrapper">
+    <div class="confirmation-box">
+        <div style="font-size:60px;">🎂</div>
+        <h2 style="color:rgb(235,67,126);margin:16px 0 8px;">Order Placed!</h2>
+        <p>Thank you <strong>@TempData["CustomerName"]</strong>! Your order has been received.</p>
+        <br />
+
+        <div style="background:#fff0f5;border-radius:12px;padding:16px;margin-bottom:20px;">
+            <p style="margin:0;font-size:1.3rem;">Your order reference:</p>
+            <p style="font-size:2rem;font-weight:700;color:rgb(235,67,126);margin:8px 0 0;word-break:break-all;">
+                @TempData["OrderReference"]
+            </p>
+        </div>
+
+        <p style="color:#666;font-size:1.3rem;line-height:2rem;">
+            Check your email for payment details. Use your order reference when making your deposit.
+        </p>
+        <br />
+
+        <a href="@TempData["WhatsAppUrl"]" target="_blank" class="btn-whatsapp">
+            💬 Send Proof on WhatsApp
+        </a>
+        <br /><br />
+        <a href="@Url.Action("Menu", "Home")" class="btn-confirm">Back to Menu</a>
+    </div>
+</div>
