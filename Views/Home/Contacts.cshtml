@@ -1,51 +1,104 @@
 ﻿@{
     Layout = "_Layout";
-    ViewData["Title"] = "Contacts";
+    ViewData["Title"] = "Contact Us";
 }
 
-<!-- Contact Section -->
-<section id="contact">
-    <div class="contact container">
-        <div>
-            <h1 class="section-title">Contact <span>info</span></h1>
-        </div>
-        <div class="contact-items">
-            <div class="contact-item">
-                    <div class="icon"><img width="100" height="100" src="https://img.icons8.com/bubbles/100/ringer-volume.png" alt="ringer-volume" /></div>
-                <div class="contact-info">
-                    <h1>Phone</h1>
-                        <h2><a href="tel:+27760708055">+27 76 070 8055</a></h2>
+<div class="contact-page-wrapper">
 
-                </div>
-
-            </div>
-                <div class="contact-item">
-                    <div class="icon"><img width="100" height="100" src="https://img.icons8.com/color/96/whatsapp--v1.png" alt="whatsapp--v1" /></div>
-                    <div class="contact-info">
-                        <h1>Whatsapp</h1>
-                        <h2><a href="https://wa.me/27760708055" target="_blank">Whatsapp.me</a></h2>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <div class="icon"><img width="100" height="100" src="https://img.icons8.com/bubbles/100/gmail-new.png" alt="gmail-new" /></div>
-                    <div class="contact-info">
-                        <h1>Email</h1>
-                    <h2><a href="mailto:mapulamichellbandagmailcom" target="_blank">mapulamichellbandagmail.com</a></h2>
-                    </div>
-                </div>
-
-            <div class="contact-item">
-                <div class="icon"><img width="100" height="100" src="https://img.icons8.com/bubbles/100/address.png" alt="address" /></div>
-                <div class="contact-info">
-                    <h1>Address</h1>
-                        <h2><a href="https://www.google.com/maps/search/?api=1&query=2934+Uzangozolo+Street+Pretoria" target="_blank">
-                            2934 Uzangozolo Street<br>Gem Valley Ext 2<br>Mamelodi, Pretoria<br>0122
-                            </a>
-                        </h2>
-                </div>
-            </div>
-        </div>
+    <!-- Header -->
+    <div class="contact-page-header">
+        <h1 class="contact-page-title">Get In <span>Touch</span></h1>
+        <p class="contact-page-subtitle">We'd love to hear from you — whether it's a question, a custom order, or just to say hi 🩷</p>
     </div>
-</section>
-<!-- End Contact Section -->
+
+    <!-- Contact Cards -->
+    <div class="contact-cards-grid">
+
+        <!-- Phone -->
+        <a href="tel:+27760708055" class="contact-card">
+            <div class="contact-card-icon">
+                <img src="https://img.icons8.com/bubbles/100/ringer-volume.png" alt="Phone" />
+            </div>
+            <div class="contact-card-content">
+                <h3>Call Us</h3>
+                <p>+27 76 070 8055</p>
+            </div>
+            <div class="contact-card-arrow">→</div>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/27760708055" target="_blank" class="contact-card whatsapp-card">
+            <div class="contact-card-icon">
+                <img src="https://img.icons8.com/color/96/whatsapp--v1.png" alt="WhatsApp" />
+            </div>
+            <div class="contact-card-content">
+                <h3>WhatsApp</h3>
+                <p>Chat with us directly</p>
+            </div>
+            <div class="contact-card-arrow">→</div>
+        </a>
+
+        <!-- Email -->
+        <a href="mailto:mapulamichellbanda@gmail.com" class="contact-card">
+            <div class="contact-card-icon">
+                <img src="https://img.icons8.com/bubbles/100/gmail-new.png" alt="Email" />
+            </div>
+            <div class="contact-card-content">
+                <h3>Email Us</h3>
+                <p>mapulamichellbanda@gmail.com</p>
+            </div>
+            <div class="contact-card-arrow">→</div>
+        </a>
+
+        <!-- Address -->
+        <a href="https://www.google.com/maps/search/?api=1&query=2934+Uzangozolo+Street+Mamelodi+Pretoria"
+           target="_blank" class="contact-card">
+            <div class="contact-card-icon">
+                <img src="https://img.icons8.com/bubbles/100/address.png" alt="Address" />
+            </div>
+            <div class="contact-card-content">
+                <h3>Find Us</h3>
+                <p>2934 Uzangozolo Street<br />Gem Valley Ext 2, Mamelodi<br />Pretoria, 0122</p>
+            </div>
+            <div class="contact-card-arrow">→</div>
+        </a>
+
+    </div>
+
+    <!-- Hours + CTA -->
+    <div class="contact-bottom-row">
+
+        <!-- Operating Hours -->
+        <div class="contact-hours-box">
+            <h3>🕐 Operating Hours</h3>
+            <div class="hours-row">
+                <span>Monday – Friday</span>
+                <span>8:00 AM – 6:00 PM</span>
+            </div>
+            <div class="hours-row">
+                <span>Saturday</span>
+                <span>8:00 AM – 4:00 PM</span>
+            </div>
+            <div class="hours-row">
+                <span>Sunday</span>
+                <span>By Appointment</span>
+            </div>
+            <p class="hours-note">* Custom cake orders require at least 3 days notice</p>
+        </div>
+
+        <!-- CTA -->
+        <div class="contact-cta-box">
+            <div style="font-size:50px;">🎂</div>
+            <h3>Ready to order?</h3>
+            <p>Browse our menu and place your custom cake order today!</p>
+            <a href="@Url.Action("Menu", "Home")" class="btn-pink-solid">
+                View Our Menu
+            </a>
+            <br /><br />
+            <a href="https://wa.me/27760708055" target="_blank" class="btn-whatsapp">
+                💬 Chat on WhatsApp
+            </a>
+        </div>
+
+    </div>
+</div>

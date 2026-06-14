@@ -1,36 +1,89 @@
 ﻿@{
     Layout = "_Layout";
-    ViewData["Title"] = "About";
+    ViewData["Title"] = "About Us";
 }
-<!-- About Section -->
-<section id="about">
-    <div class="about container">
-        <div class="col-left">
-            <div class="about-img">
-                    <img src="~/images/logo.jpeg" alt="img" />
-            </div>
-        </div>
-        <div class="col-right">
-            <h1 class="section-title">
-                ABOUT <span>REAB BAKERY</span>
-            </h1>
-            <h2>Homemade with love, crafted for every celebration.</h2>
-            <p>
-                Welcome to ReaB Bakery, a home-based bakery founded by <b>Ephenia Malatsa</b> in 2023. What began as a passion for baking has grown into a business dedicated to creating beautiful, handcrafted cakes for life's most special moments.<br>
 
-                At ReaB Bakery, we specialize in custom cakes, bento cakes, cupcakes, celebration cakes, and unique designs tailored to your vision. Every cake is carefully made using quality ingredients, creativity, and attention to detail, ensuring a perfect balance of taste and presentation.
+<div class="about-page-wrapper">
 
-                Whether you're celebrating a birthday, baby shower, graduation, anniversary, bridal shower, wedding, or any special occasion, we are committed to bringing your ideas to life. <br>
-                From elegant designs to fun and trendy creations, every order is made with care and a personal touch.
-
-                Thank you for choosing ReaB Bakery. We look forward to being part of your celebrations and creating sweet memories that last long after the last slice is enjoyed.
-            </p>
-
-                <a href="~/images/PriceList.jpeg" download class="cta">Browse our cakes</a>
-
-
-
+    <!-- Hero Banner -->
+    <div class="about-hero">
+        <div class="about-hero-content">
+            <p class="about-eyebrow">Est. 2023 · Mamelodi, Pretoria</p>
+            <h1 class="about-hero-title">Made with <span>Love</span>,<br />Baked for <span>You</span></h1>
+            <p class="about-hero-sub">Handcrafted cakes for life's most special moments</p>
         </div>
     </div>
-</section>
-<!-- End About Section -->
+
+    <!-- Story Section -->
+    <div class="about-story-section">
+        <div class="about-story-img">
+            <img src="/images/ReaBBakery-logo.svg" alt="ReaB Bakery" />
+        </div>
+        <div class="about-story-content">
+            <p class="about-label">Our Story</p>
+            <h2 class="about-story-title">From passion to <span>purpose</span></h2>
+            <p class="about-story-text">
+                Welcome to <strong>ReaB Bakery</strong>, a home-based bakery founded by
+                <strong>Ephenia Malatsa</strong> in 2023. What began as a passion for baking
+                has grown into a business dedicated to creating beautiful, handcrafted cakes
+                for life's most special moments.
+            </p>
+            <p class="about-story-text">
+                At ReaB Bakery, we specialise in custom cakes, bento cakes, cupcakes,
+                celebration cakes, and unique designs tailored to your vision. Every cake
+                is carefully made using quality ingredients, creativity, and attention to
+                detail — ensuring a perfect balance of taste and presentation.
+            </p>
+            <p class="about-story-text">
+                Whether you're celebrating a birthday, baby shower, graduation, anniversary,
+                bridal shower, or wedding — we are committed to bringing your ideas to life.
+                From elegant designs to fun and trendy creations, every order is made with
+                care and a personal touch.
+            </p>
+            <a href="@Url.Action("Menu", "Home")" class="btn-pink-solid">
+                🎂 View Our Menu
+            </a>
+        </div>
+    </div>
+
+    <!-- Values Section -->
+    <div class="about-values-section">
+        <h2 class="about-values-title">Why Choose <span>ReaB?</span></h2>
+        <div class="about-values-grid">
+            <div class="about-value-card">
+                <div class="about-value-icon">🎨</div>
+                <h3>Custom Designs</h3>
+                <p>Every cake is designed around your vision — colours, themes, and personal touches that make it uniquely yours.</p>
+            </div>
+            <div class="about-value-card">
+                <div class="about-value-icon">💯</div>
+                <h3>Quality Ingredients</h3>
+                <p>We use only quality ingredients in every bake — because great taste is just as important as great looks.</p>
+            </div>
+            <div class="about-value-card">
+                <div class="about-value-icon">🩷</div>
+                <h3>Made with Love</h3>
+                <p>Every order gets our full attention and care. We treat your celebration as if it were our own.</p>
+            </div>
+            <div class="about-value-card">
+                <div class="about-value-icon">🎂</div>
+                <h3>Every Occasion</h3>
+                <p>Birthdays, weddings, baby showers, graduations — no celebration is too big or too small for us.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="about-cta-banner">
+        <h2>Ready to create something <span>beautiful?</span></h2>
+        <p>Browse our menu and place your custom cake order today.</p>
+        <div class="about-cta-buttons">
+            <a href="@Url.Action("Menu", "Home")" class="btn-pink-solid">View Our Menu</a>
+            <a href="@Url.Action("Contacts", "Home")" class="btn-outline-contact">Contact Us</a>
+            <a href="https://wa.me/27760708055" target="_blank" class="btn-whatsapp">
+                💬 WhatsApp Us
+            </a>
+        </div>
+    </div>
+
+</div>

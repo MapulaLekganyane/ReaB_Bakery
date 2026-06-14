@@ -1,0 +1,95 @@
+<svg width="100%" viewBox="0 0 680 320" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>ReaB Bakery Logo</title>
+  <desc>ReaB Bakery logo featuring a decorative cake illustration with elegant typography</desc>
+
+  <style>
+    .logo-brand { font-family: Georgia, serif; font-size: 72px; font-weight: 700; fill: #eb437e; letter-spacing: 2px; }
+    .logo-sub { font-family: Georgia, serif; font-size: 18px; fill: #c0396a; letter-spacing: 8px; }
+    .logo-tag { font-family: Georgia, serif; font-size: 13px; fill: #d4799f; letter-spacing: 3px; font-style: italic; }
+    .divider { stroke: #eb437e; stroke-width: 1; }
+    .cake-fill { fill: #fff0f5; }
+    .cake-stroke { fill: none; stroke: #eb437e; stroke-width: 1.5; }
+    .cake-accent { fill: #eb437e; }
+    .cake-cream { fill: #ffd6e7; }
+    .cherry { fill: #c0392b; }
+    .cherry-stem { fill: none; stroke: #6d4c41; stroke-width: 1.2; stroke-linecap: round; }
+    .dot { fill: #eb437e; }
+    .dot2 { fill: #ffd6e7; }
+  </style>
+
+  <!-- Plate -->
+  <ellipse cx="160" cy="272" rx="72" ry="10" fill="#f8d0e2" opacity="0.5"/>
+
+  <!-- Bottom tier -->
+  <rect x="102" y="230" width="116" height="40" rx="4" class="cake-fill" stroke="#eb437e" stroke-width="1.5"/>
+  <path d="M108 230 Q114 220 120 230 Q126 220 132 230 Q138 220 144 230 Q150 220 156 230 Q162 220 168 230 Q174 220 180 230 Q186 220 192 230 Q198 220 204 230 Q210 220 212 230" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+  <rect x="102" y="248" width="116" height="4" fill="#ffd6e7" opacity="0.7"/>
+  <circle cx="120" cy="258" r="3" class="dot2"/>
+  <circle cx="140" cy="258" r="3" class="dot2"/>
+  <circle cx="160" cy="258" r="3" class="dot2"/>
+  <circle cx="180" cy="258" r="3" class="dot2"/>
+  <circle cx="200" cy="258" r="3" class="dot2"/>
+
+  <!-- Middle tier -->
+  <rect x="118" y="188" width="84" height="42" rx="4" class="cake-fill" stroke="#eb437e" stroke-width="1.5"/>
+  <path d="M124 188 Q130 178 136 188 Q142 178 148 188 Q154 178 160 188 Q166 178 172 188 Q178 178 184 188 Q190 178 196 188 Q200 178 202 188" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+  <circle cx="135" cy="210" r="3" class="dot"/>
+  <circle cx="155" cy="210" r="3" class="dot"/>
+  <circle cx="175" cy="210" r="3" class="dot"/>
+  <circle cx="160" cy="200" r="5" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+  <circle cx="153" cy="200" r="3" fill="#ffd6e7" stroke="#eb437e" stroke-width="0.8"/>
+  <circle cx="167" cy="200" r="3" fill="#ffd6e7" stroke="#eb437e" stroke-width="0.8"/>
+  <circle cx="160" cy="194" r="3" fill="#ffd6e7" stroke="#eb437e" stroke-width="0.8"/>
+  <circle cx="160" cy="206" r="3" fill="#ffd6e7" stroke="#eb437e" stroke-width="0.8"/>
+
+  <!-- Top tier -->
+  <rect x="132" y="152" width="56" height="36" rx="4" class="cake-fill" stroke="#eb437e" stroke-width="1.5"/>
+  <path d="M136 152 Q142 142 148 152 Q154 142 160 152 Q166 142 172 152 Q178 142 184 152 Q186 142 188 152" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+  <path d="M148 160 Q152 155 156 160 Q160 155 164 160" fill="none" stroke="#eb437e" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M148 162 Q152 167 156 162 Q160 167 164 162" fill="none" stroke="#eb437e" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="156" cy="161" r="2.5" class="cake-accent"/>
+
+  <!-- Candles -->
+  <rect x="143" y="135" width="6" height="18" rx="2" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+  <rect x="156" y="130" width="6" height="22" rx="2" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+  <rect x="169" y="135" width="6" height="18" rx="2" fill="#ffd6e7" stroke="#eb437e" stroke-width="1"/>
+
+  <!-- Flames -->
+  <ellipse cx="146" cy="133" rx="3" ry="4" fill="#ffb347" opacity="0.9"/>
+  <ellipse cx="159" cy="128" rx="3" ry="4" fill="#ffb347" opacity="0.9"/>
+  <ellipse cx="172" cy="133" rx="3" ry="4" fill="#ffb347" opacity="0.9"/>
+  <ellipse cx="146" cy="134" rx="1.5" ry="2" fill="#fff4cc"/>
+  <ellipse cx="159" cy="129" rx="1.5" ry="2" fill="#fff4cc"/>
+  <ellipse cx="172" cy="134" rx="1.5" ry="2" fill="#fff4cc"/>
+
+  <!-- Cherries -->
+  <path d="M155 152 Q152 145 148 140" class="cherry-stem"/>
+  <path d="M163 152 Q166 145 170 140" class="cherry-stem"/>
+  <circle cx="147" cy="138" r="5" class="cherry"/>
+  <circle cx="171" cy="138" r="5" class="cherry"/>
+  <circle cx="148" cy="136" r="1.5" fill="rgba(255,255,255,0.4)"/>
+  <circle cx="172" cy="136" r="1.5" fill="rgba(255,255,255,0.4)"/>
+
+  <!-- Divider -->
+  <line x1="240" y1="160" x2="240" y2="272" class="divider" opacity="0.3"/>
+
+  <!-- Brand name -->
+  <text x="268" y="240" class="logo-brand">ReaB</text>
+
+  <!-- Top and bottom lines -->
+  <line x1="268" y1="175" x2="590" y2="175" class="divider"/>
+  <line x1="268" y1="258" x2="590" y2="258" class="divider"/>
+
+  <!-- BAKERY -->
+  <text x="429" y="197" text-anchor="middle" class="logo-sub">BAKERY</text>
+
+  <!-- Tagline -->
+  <text x="429" y="282" text-anchor="middle" class="logo-tag">homemade with love</text>
+
+  <!-- Corner dots -->
+  <circle cx="268" cy="175" r="3" class="cake-accent"/>
+  <circle cx="590" cy="175" r="3" class="cake-accent"/>
+  <circle cx="268" cy="258" r="3" class="cake-accent"/>
+  <circle cx="590" cy="258" r="3" class="cake-accent"/>
+
+</svg>
