@@ -1,4 +1,4 @@
-### Lindi’s Home Bakery Management System
+### REAB Bakery Management System
 
 A web-based management system for a bakery business designed to aid in the management of daily activities in a small home-based bakery business. 
 It is aimed at ensuring efficiency, organization, and better customer relations in the business.
