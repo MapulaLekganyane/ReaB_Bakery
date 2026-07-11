@@ -24,7 +24,7 @@
         <div class="product-detail-form-wrap">
             <h1 class="product-detail-name">@Model.Name</h1>
             <p class="product-detail-desc">@Model.Description</p>
-            <p class="product-detail-price">From @CurrencyHelper.FormatAmount(Model.Price)</p>
+            <p class="product-detail-price">@CurrencyHelper.FormatAmount(Model.Price)</p>
 
             <form asp-controller="Home" asp-action="PlaceCustomOrder"
                   method="post" enctype="multipart/form-data" class="custom-order-form">

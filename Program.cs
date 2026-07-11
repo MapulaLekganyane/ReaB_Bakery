@@ -1,6 +1,7 @@
 using ReaB_Bakery.Data;
 using ReaB_Bakery.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //    options.ListenAnyIP(int.Parse(port));
 //});
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Account/Login";
+        options.AccessDeniedPath = "/Account/Login";
+        options.ExpireTimeSpan = TimeSpan.FromHours(8);
+    });
+
+
 var app = builder.Build();   // <-- MUST be here
 
 // Configure the HTTP request pipeline.
@@ -47,6 +57,7 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSession();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

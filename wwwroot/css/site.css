@@ -2543,6 +2543,24 @@ form.d-inline {
     }
 }
 
+/* Admin Dashboard */
+.admin-page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 20px 60px;
+}
+
+    .admin-page-wrapper .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin: 0 0 24px;
+    }
+
+    .admin-page-wrapper .col-md-6 {
+        flex: 1 1 320px;
+    }
+
 /* Tablet and up - grid layout */
 @media only screen and (min-width: 768px) {
     #contact .contact-items {
