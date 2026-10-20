@@ -5,8 +5,11 @@
 }
 
 <div class="admin-page-wrapper" style="max-width: 800px;">
-    <a href="@Url.Action("Dashboard")" class="mb-3 d-inline-block">← Back to Dashboard</a>
+    <a href="@Url.Action("Dashboard")" class="mb-3 d-inline-block">← Back to Dashboard</a><br />
+    <br />
+
     <h2>Order @Model.OrderReference</h2>
+    <br />
 
     @if (TempData["Success"] != null)
     {
@@ -24,6 +27,10 @@
         </div>
     </div>
 
+    <br />
+    <br />
+
+
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Cake Details</h5>
@@ -37,6 +44,11 @@
                 <strong>Colour:</strong>
                 @(Model.CakeColour == "Custom" && !string.IsNullOrEmpty(Model.CustomColour) ? Model.CustomColour : Model.CakeColour)
             </p>
+
+            <br />
+            <br />
+
+
             @if (!string.IsNullOrEmpty(Model.InspirationPhotoPath))
             {
                 <div class="mt-3">
@@ -46,6 +58,10 @@
             }
         </div>
     </div>
+
+    <br />
+    <br />
+
 
     <form asp-controller="Admin" asp-action="OrderDetail" method="post">
         @Html.AntiForgeryToken()

@@ -3,32 +3,77 @@
     ViewData["Title"] = "Admin Login";
 }
 
-<div class="container mt-5" style="max-width: 400px;">
-    <h2 class="text-center mb-4">ReaB Bakery — Owner Login</h2>
+<div class="admin-login-page">
+    <main class="admin-login-card">
 
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <div class="alert alert-danger">
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <div>@error.ErrorMessage</div>
-            }
-        </div>
-    }
+        <div class="admin-login-brand">
+            <div class="admin-login-logo"
+                 aria-hidden="true">
+                R
+            </div>
 
-    <form asp-controller="Account" asp-action="Login" method="post">
-        @Html.AntiForgeryToken()
+            <h1 class="admin-login-title">
+                ReaB <span>Bakery</span>
+            </h1>
 
-        <div class="mb-3">
-            <label class="form-label">Username</label>
-            <input type="text" name="username" class="form-control" required autofocus />
+            <p class="admin-login-subtitle">
+                Sign in to manage customer orders and bakery requests.
+            </p>
         </div>
 
-        <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" required />
-        </div>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="admin-alert admin-alert-error"
+                 role="alert">
 
-        <button type="submit" class="btn btn-pink w-100">Log In</button>
-    </form>
+                @foreach (var error in
+                            ViewData.ModelState.Values
+                            .SelectMany(value => value.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+
+        <form asp-controller="Account"
+              asp-action="Login"
+              method="post">
+
+            @Html.AntiForgeryToken()
+
+            <div class="admin-form-group">
+                <label for="username"
+                       class="admin-form-label">
+                    Username
+                </label>
+
+                <input id="username"
+                       type="text"
+                       name="username"
+                       class="admin-input"
+                       autocomplete="username"
+                       required
+                       autofocus />
+            </div>
+
+            <div class="admin-form-group">
+                <label for="password"
+                       class="admin-form-label">
+                    Password
+                </label>
+
+                <input id="password"
+                       type="password"
+                       name="password"
+                       class="admin-input"
+                       autocomplete="current-password"
+                       required />
+            </div>
+
+            <button type="submit"
+                    class="admin-btn admin-btn-primary admin-btn-block">
+                Log in
+            </button>
+        </form>
+    </main>
 </div>
