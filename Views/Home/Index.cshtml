@@ -2,8 +2,10 @@
     Layout = "_Layout";
     ViewData["Title"] = "Home";
 }
-<!-- Hero Section  -->
+
+<!-- Hero Section -->
 <section id="hero">
+
     <video autoplay muted loop playsinline class="hero-video-bg">
         <source src="~/videos/bakery-hero.mp4" type="video/mp4">
     </video>
@@ -11,11 +13,26 @@
     <div class="hero container">
         <div>
             <p class="hero-eyebrow">Homemade with love</p>
-            <h1 class="hero-name">ReaB's<span></span></h1>
-            <h1 class="hero-subtitle">Sweet Treats<span></span></h1>
-            <p class="hero-tagline">Get your baked goodies for less!</p>
-            <a asp-controller="Home" asp-action="Menu" class="cta">Menu</a>
+
+            <h1 class="hero-name">
+                ReaB's<span></span>
+            </h1>
+
+            <h1 class="hero-subtitle">
+                Sweet Treats<span></span>
+            </h1>
+
+            <p class="hero-tagline">
+                Get your baked goodies for less!
+            </p>
+
+            <a asp-controller="Home"
+               asp-action="Menu"
+               class="cta">
+                Menu
+            </a>
         </div>
     </div>
+
 </section>
-<!-- End Hero Section  -->
+<!-- End Hero Section -->

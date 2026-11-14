@@ -242,12 +242,12 @@ p {
 }
 
 .hero-video-bg {
-       position: absolute;
-    top: 50%;
-    left: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    transform: translate(-50%, -50%) scale(0.95);
+    transform: none;
     object-fit: cover;
     z-index: -2;
 }
@@ -950,8 +950,10 @@ p {
 /*End contact Section */
 
 /* Footer */
+/* Footer */
 #footer {
-    background-image: linear-gradient(60deg, #e67eb5 0%, #f693e5 100%);
+    background-color: rgb(235, 67, 126);
+    background-image: none;
 }
 
     #footer .footer {
@@ -959,10 +961,11 @@ p {
         flex-direction: column;
         padding-top: 5px;
         padding-bottom: 5px;
+        background-color: rgb(235, 67, 126);
     }
 
     #footer h1 {
-        font-family: "Edu NSW ACT Foundation", Cursive;
+        font-family: "Edu NSW ACT Foundation", cursive;
         font-style: italic;
         font-size: 1.2rem;
     }
@@ -981,6 +984,7 @@ p {
         color: white;
         font-size: 1.5rem;
     }
+/* End Footer */
 /* End Footer */
 
 /* Keyframes */
