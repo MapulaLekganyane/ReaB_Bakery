@@ -251,7 +251,7 @@ namespace ReaB_Bakery.Data
                      Name = "Custom Cupcake Box",
                      Description = "A bespoke box of cupcakes designed around your theme, colours, and occasion. Tell us your vision and we'll bake it.",
                      Price = 180m,
-                     ImageUrl = "\"/images/CupcakeBox.jpeg",
+                     ImageUrl = "/images/CupcakeBox.jpeg",
                      Category = "Cupcakes",
                      IsAvailable = true
                  }

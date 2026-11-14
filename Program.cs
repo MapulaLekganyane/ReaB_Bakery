@@ -25,7 +25,7 @@ builder.Services.AddSession(options =>
 //FOR LOCAL HOSTING
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("LocalConnection"))
+        builder.Configuration.GetConnectionString("AzureConnection"))
 );
 
 //FOR RENDER HOSTING
